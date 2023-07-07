@@ -13,4 +13,4 @@ done correctly. Just put the .uf2 file on the drive and it will disconnect after
 it loads.
 
 ## Hygrometer probe
-![probe render](https://raw.githubusercontent.com/red2fred2/hygrostat/master/electonics/hygrometer-probe/render.png)
+![probe render](https://raw.githubusercontent.com/red2fred2/hygrostat/master/electronics/hygrometer-probe/render.png)
