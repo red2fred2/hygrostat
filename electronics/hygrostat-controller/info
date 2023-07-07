@@ -4,7 +4,7 @@
   "name": "hygrostat-controller",
   "content": "",
   "created_at": "2023-07-07 03:35:01",
-  "updated_at": "2023-07-07 04:08:16",
+  "updated_at": "2023-07-07 04:40:28",
   "stick": "",
   "documents": [
     {
@@ -15,7 +15,6 @@
       "master": "",
       "thumb": "/images/thumb-default.png",
       "components": {
-        "6107490819734af0acd77bc02316fe34": 2,
         "dd1bd0a9f0b849aeb788b05bdd214157": 1,
         "e8417a327bc44ce198fde813725b7eb9": 1,
         "a09acdd62f7b4103a152df1c5a7581e3": 1,
@@ -27,7 +26,10 @@
         "ddd13dcccf0fd46ce54b9f3e6cd8d705": 2,
         "7c4a625d480a452e96fd015e7a383935": 1,
         "59d0088890f2452ea7072f8d70c2a9ec": 1,
-        "c2754a5dac404cb1b757213b56759c67": 1
+        "c2754a5dac404cb1b757213b56759c67": 1,
+        "b0b97b26ed1e459488c56a21b3af94c6": 4,
+        "bbc587d5865e49aeb549df470fadded7": 1,
+        "0613ecefb18d471abd49fce89f778704": 1
       },
       "BOM": [
         [
@@ -98,6 +100,36 @@
           }
         ],
         [
+          "X6511WV-04H-C30D60",
+          1,
+          "HDR-TH_4P-P2.54-V-M",
+          "FAN",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C706876",
+            "BOM_Manufacturer": "XKB Connectivity(中国星坤)",
+            "BOM_Manufacturer Part": "X6511WV-04H-C30D60",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "89f5280378144b629de4998ef974b6b8",
+            "uuid": "bbc587d5865e49aeb549df470fadded7"
+          }
+        ],
+        [
+          "FFH25405-S02S1001K6K",
+          4,
+          "HDR-TH_2P-P2.54-V-F_FFH25405",
+          "HYG1_I2C,HYG1_POWER,HYG2_I2C,HYG2_POWER",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2833813",
+            "BOM_Manufacturer": "TXGA(特思嘉)",
+            "BOM_Manufacturer Part": "FFH25405-S02S1001K6K",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "5522786b82cf40349dcc37e2c0379997",
+            "uuid": "b0b97b26ed1e459488c56a21b3af94c6"
+          }
+        ],
+        [
           "AMS1117-3.3V_C5120796",
           1,
           "SOT-89-3_L4.5-W2.5-P1.50-LS4.2-BR",
@@ -110,6 +142,21 @@
             "BOM_JLCPCB Part Class": "Extended Part",
             "puuid": "89243c15a2974ba08305eced8ca2c9d4",
             "uuid": "dd1bd0a9f0b849aeb788b05bdd214157"
+          }
+        ],
+        [
+          "NDS331N",
+          1,
+          "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+          "Q2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C192741",
+            "BOM_Manufacturer": "onsemi(安森美)",
+            "BOM_Manufacturer Part": "NDS331N",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "bade90667a6e4731855e9a223387b8a6",
+            "uuid": "0613ecefb18d471abd49fce89f778704"
           }
         ],
         [
@@ -155,21 +202,6 @@
             "BOM_JLCPCB Part Class": "Extended Part",
             "puuid": "398691f1f785460098bbe5ee6590333c",
             "uuid": "622cdb90940c4f199da44fcf48618824"
-          }
-        ],
-        [
-          "PZ254V-11-02P",
-          2,
-          "HDR-TH_2P-P2.54-V-M",
-          "SWD1,UART1",
-          {
-            "BOM_Supplier": "LCSC",
-            "BOM_Supplier Part": "C492401",
-            "BOM_Manufacturer": "XFCN",
-            "BOM_Manufacturer Part": "PZ254V-11-02P",
-            "BOM_JLCPCB Part Class": "Extended Part",
-            "puuid": "e6b180e1316a4d0690f78b72797504c2",
-            "uuid": "6107490819734af0acd77bc02316fe34"
           }
         ],
         [
@@ -233,16 +265,16 @@
           }
         ]
       ],
-      "updateTime": 1688720896,
+      "updateTime": 1688722828,
       "createTime": 1688718902,
       "histories": [],
       "created_at": "2023-07-07 03:35:02",
-      "updated_at": "2023-07-07 04:08:16"
+      "updated_at": "2023-07-07 04:40:28"
     }
   ],
   "sort": [],
   "title": "hygrostat-controller",
   "foldername": "hygrostat-controller",
   "schfilename": "hygrostat-controller.json",
-  "schfilemtime": 1688720894817
+  "schfilemtime": 1688722827028
 }
