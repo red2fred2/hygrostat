@@ -1,6 +1,6 @@
 # This contains the code and design files for a very small hygrostat system
 
-## This system is being built to keep a constant humidity in a very small cheese cave, but should be usable for other small areas.
+This system is being built to keep a constant humidity in a very small cheese cave, but should be usable for other small areas.
 
 The electronic design files are in the electronics folder, mechanical in the
 mechanical folder, and software in the src folder.
