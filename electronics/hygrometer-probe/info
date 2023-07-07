@@ -4,7 +4,7 @@
   "name": "hygrometer-probe",
   "content": "",
   "created_at": "2023-07-07 03:35:31",
-  "updated_at": "2023-07-07 03:35:31",
+  "updated_at": "2023-07-07 04:03:55",
   "stick": "",
   "documents": [
     {
@@ -14,7 +14,10 @@
       "docType": "1",
       "master": "",
       "thumb": "/images/thumb-default.png",
-      "components": {},
+      "components": {
+        "7c5dcccdc122488dba97f3700646b0ce": 1,
+        "b0b97b26ed1e459488c56a21b3af94c6": 2
+      },
       "BOM": [
         [
           "Value",
@@ -22,18 +25,48 @@
           "Package",
           "Components",
           "CustomPara"
+        ],
+        [
+          "FFH25405-S02S1001K6K",
+          2,
+          "HDR-TH_2P-P2.54-V-F_FFH25405",
+          "I2C,POWER",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2833813",
+            "BOM_Manufacturer": "TXGA(特思嘉)",
+            "BOM_Manufacturer Part": "FFH25405-S02S1001K6K",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "5522786b82cf40349dcc37e2c0379997",
+            "uuid": "b0b97b26ed1e459488c56a21b3af94c6"
+          }
+        ],
+        [
+          "SHT30-DIS-B10KS",
+          1,
+          "DFN-8_L2.5-W2.5-P0.50-BL-EP",
+          "U1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2687423",
+            "BOM_Manufacturer": "Sensirion(瑞士盛思锐)",
+            "BOM_Manufacturer Part": "SHT30-DIS-B10KS",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "9e477ac8937f44909cca12c6e6d4924d",
+            "uuid": "7c5dcccdc122488dba97f3700646b0ce"
+          }
         ]
       ],
-      "updateTime": 1688718931,
+      "updateTime": 1688720635,
       "createTime": 1688718931,
       "histories": [],
       "created_at": "2023-07-07 03:35:31",
-      "updated_at": "2023-07-07 03:35:31"
+      "updated_at": "2023-07-07 04:03:55"
     }
   ],
   "sort": [],
   "title": "hygrometer-probe",
   "foldername": "hygrometer-probe",
   "schfilename": "hygrometer-probe.json",
-  "schfilemtime": 1688718929910
+  "schfilemtime": 1688720634067
 }
