@@ -1,0 +1,39 @@
+{
+  "uuid": "7be84afe6d7f51304535b099288e3a16",
+  "path": "Offline/hygrostat-controller",
+  "name": "hygrostat-controller",
+  "content": "",
+  "created_at": "2023-07-07 03:35:01",
+  "updated_at": "2023-07-07 03:35:02",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "eecc355e9bd78bd02afb940447b414aa",
+      "title": "Sheet_1",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {},
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ]
+      ],
+      "updateTime": 1688718902,
+      "createTime": 1688718902,
+      "histories": [],
+      "created_at": "2023-07-07 03:35:02",
+      "updated_at": "2023-07-07 03:35:02"
+    }
+  ],
+  "sort": [],
+  "title": "hygrostat-controller",
+  "foldername": "hygrostat-controller",
+  "schfilename": "hygrostat-controller.json",
+  "schfilemtime": 1688718900735
+}
