@@ -4,7 +4,7 @@
   "name": "hygrostat-controller",
   "content": "",
   "created_at": "2023-07-07 03:35:01",
-  "updated_at": "2023-07-07 04:40:28",
+  "updated_at": "2023-07-08 02:43:55",
   "stick": "",
   "documents": [
     {
@@ -16,20 +16,29 @@
       "thumb": "/images/thumb-default.png",
       "components": {
         "dd1bd0a9f0b849aeb788b05bdd214157": 1,
-        "e8417a327bc44ce198fde813725b7eb9": 1,
+        "e8417a327bc44ce198fde813725b7eb9": 2,
         "a09acdd62f7b4103a152df1c5a7581e3": 1,
-        "597701dbde98d3183fe5df5fb870ec57": 2,
-        "13f526a14460496eae385073c27157f2": 1,
+        "597701dbde98d3183fe5df5fb870ec57": 11,
         "fdba86e972f94e859537e6c4cbdb5930": 1,
         "622cdb90940c4f199da44fcf48618824": 1,
         "28d8c358ba4ef894aa01e6240bbb8a28": 2,
-        "ddd13dcccf0fd46ce54b9f3e6cd8d705": 2,
+        "ddd13dcccf0fd46ce54b9f3e6cd8d705": 3,
         "7c4a625d480a452e96fd015e7a383935": 1,
         "59d0088890f2452ea7072f8d70c2a9ec": 1,
         "c2754a5dac404cb1b757213b56759c67": 1,
         "b0b97b26ed1e459488c56a21b3af94c6": 4,
         "bbc587d5865e49aeb549df470fadded7": 1,
-        "0613ecefb18d471abd49fce89f778704": 1
+        "aa4e41b25d26471e99e0f49bee496574": 1,
+        "0613ecefb18d471abd49fce89f778704": 2,
+        "86ba298425c54f21ae819a207ec551cd": 1,
+        "dc38fa811ca5d659686717fdb1b2d7cc": 1,
+        "036dbf200c764746841ad8c945d288cf": 1,
+        "6c3571c06354416892a1f39a23c128ec": 1,
+        "ee6406fcc3eb466b9b226c630643b8b1": 1,
+        "c5c16e2f412e44339e0d4f440e941cc0": 1,
+        "8305f7941c63420eaa3a3a07b318940c": 1,
+        "212d78e5b7e449d28b4e91578e129145": 1,
+        "25466cf396104c57af210264875aaed2": 1
       },
       "BOM": [
         [
@@ -40,18 +49,78 @@
           "CustomPara"
         ],
         [
-          "TS-KG02S",
-          1,
-          "SW-SMD_4P-L6.0-W6.0-P3.90-LS9.5",
-          "BOOT1",
+          "10pF",
+          3,
+          "C0603",
+          "C1,C15,C16",
           {
             "BOM_Supplier": "LCSC",
-            "BOM_Supplier Part": "C410366",
-            "BOM_Manufacturer": "HANBO(汉博)",
-            "BOM_Manufacturer Part": "TS-KG02S",
+            "BOM_Manufacturer Part": "CL10C100JB8NNNC",
+            "BOM_Manufacturer": "SAMSUNG(三星)",
+            "BOM_Supplier Part": "C1634",
+            "BOM_JLCPCB Part Class": "Basic Part",
+            "puuid": "f8151fdc728a41ebbc304e11d39e5437",
+            "uuid": "ddd13dcccf0fd46ce54b9f3e6cd8d705"
+          }
+        ],
+        [
+          "470uF",
+          1,
+          "CAP-TH_BD10.0-P5.00-D1.0-FD",
+          "C2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "AISHI(艾华集团)",
+            "BOM_Manufacturer Part": "ERE1EM471G13OT",
+            "BOM_Supplier Part": "C105289",
             "BOM_JLCPCB Part Class": "Extended Part",
-            "puuid": "39c326858ead4632a4b3077ea68cb429",
-            "uuid": "13f526a14460496eae385073c27157f2"
+            "puuid": "10740f144756421793e1ecc7520b3129",
+            "uuid": "8305f7941c63420eaa3a3a07b318940c"
+          }
+        ],
+        [
+          "10nF",
+          1,
+          "C0805",
+          "C3",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C525298",
+            "BOM_Manufacturer": "PSA(信昌电陶)",
+            "BOM_Manufacturer Part": "FN21X103K500PXG",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "2ee8eb13a0124a108e622ce40c0c25a8",
+            "uuid": "212d78e5b7e449d28b4e91578e129145"
+          }
+        ],
+        [
+          "2.2nF",
+          1,
+          "C0603",
+          "C4",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C559291",
+            "BOM_Manufacturer": "IHHEC(禾伸堂)",
+            "BOM_Manufacturer Part": "C0603X222K251T",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "f8151fdc728a41ebbc304e11d39e5437",
+            "uuid": "25466cf396104c57af210264875aaed2"
+          }
+        ],
+        [
+          "22uF",
+          2,
+          "CASE-A_3216",
+          "C5,C28",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "CEC(振华新云)",
+            "BOM_Manufacturer Part": "CA45-A-10V-22uF-K",
+            "BOM_Supplier Part": "C129272",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "ce25118ef0b041b8a773e71ca28ae65d",
+            "uuid": "e8417a327bc44ce198fde813725b7eb9"
           }
         ],
         [
@@ -70,33 +139,18 @@
           }
         ],
         [
-          "10pF",
-          2,
-          "C0603",
-          "C15,C16",
-          {
-            "BOM_Supplier": "LCSC",
-            "BOM_Manufacturer Part": "CL10C100JB8NNNC",
-            "BOM_Manufacturer": "SAMSUNG(三星)",
-            "BOM_Supplier Part": "C1634",
-            "BOM_JLCPCB Part Class": "Basic Part",
-            "puuid": "f8151fdc728a41ebbc304e11d39e5437",
-            "uuid": "ddd13dcccf0fd46ce54b9f3e6cd8d705"
-          }
-        ],
-        [
-          "22uF",
+          "DSK14W K14",
           1,
-          "CASE-A_3216",
-          "C28",
+          "SOD-123FL_L2.8-W1.9-LS3.7-RD",
+          "D1",
           {
             "BOM_Supplier": "LCSC",
-            "BOM_Manufacturer": "CEC(振华新云)",
-            "BOM_Manufacturer Part": "CA45-A-10V-22uF-K",
-            "BOM_Supplier Part": "C129272",
+            "BOM_Supplier Part": "C3014043",
+            "BOM_Manufacturer": "FOSAN(富信)",
+            "BOM_Manufacturer Part": "DSK14W",
             "BOM_JLCPCB Part Class": "Extended Part",
-            "puuid": "ce25118ef0b041b8a773e71ca28ae65d",
-            "uuid": "e8417a327bc44ce198fde813725b7eb9"
+            "puuid": "1a7bb6a50d7645d78dc9dd1cfddef81e",
+            "uuid": "6c3571c06354416892a1f39a23c128ec"
           }
         ],
         [
@@ -130,6 +184,36 @@
           }
         ],
         [
+          "10uH",
+          1,
+          "IND-SMD_L5.0-W5.0",
+          "L1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2936578",
+            "BOM_Manufacturer": "chilisin(奇力新)",
+            "BOM_Manufacturer Part": "AWVS00505020100M00",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "a70ab8a52ca04eaba91b5e4c3fb1da5a",
+            "uuid": "036dbf200c764746841ad8c945d288cf"
+          }
+        ],
+        [
+          "DB128R-5.0-2P",
+          1,
+          "CONN-TH_DB128R-5.0-2P",
+          "MIST",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C424681",
+            "BOM_Manufacturer": "DIBO(地博电气)",
+            "BOM_Manufacturer Part": "DB128R-5.0-2P-GN-S",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "cf770cd8c84c4541b906fea14b3fa589",
+            "uuid": "aa4e41b25d26471e99e0f49bee496574"
+          }
+        ],
+        [
           "AMS1117-3.3V_C5120796",
           1,
           "SOT-89-3_L4.5-W2.5-P1.50-LS4.2-BR",
@@ -146,9 +230,9 @@
         ],
         [
           "NDS331N",
-          1,
+          2,
           "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
-          "Q2",
+          "Q2,Q3",
           {
             "BOM_Supplier": "LCSC",
             "BOM_Supplier Part": "C192741",
@@ -161,9 +245,9 @@
         ],
         [
           "1kΩ",
-          2,
+          11,
           "R0603",
-          "R21,R25",
+          "R1,R2,R3,R4,R5,R6,R7,R8,R9,R21,R25",
           {
             "BOM_Supplier": "LCSC",
             "BOM_Manufacturer": "UNI-ROYAL(厚声)",
@@ -172,6 +256,36 @@
             "BOM_JLCPCB Part Class": "Basic Part",
             "puuid": "398691f1f785460098bbe5ee6590333c",
             "uuid": "597701dbde98d3183fe5df5fb870ec57"
+          }
+        ],
+        [
+          "8.66kΩ",
+          1,
+          "R0603",
+          "R10",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C218174",
+            "BOM_Manufacturer": "Viking(光颉)",
+            "BOM_Manufacturer Part": "ARG03FTC8661",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "398691f1f785460098bbe5ee6590333c",
+            "uuid": "ee6406fcc3eb466b9b226c630643b8b1"
+          }
+        ],
+        [
+          "RT0805DRE0718K7L",
+          1,
+          "R0805",
+          "R11",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C706335",
+            "BOM_Manufacturer": "YAGEO(国巨)",
+            "BOM_Manufacturer Part": "RT0805DRE0718K7L",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "b60f399a7a7e41848b2be1eb49c79141",
+            "uuid": "c5c16e2f412e44339e0d4f440e941cc0"
           }
         ],
         [
@@ -220,6 +334,36 @@
           }
         ],
         [
+          "AS321KTR-G1",
+          1,
+          "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+          "U2",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "DIODES(美台)",
+            "BOM_Manufacturer Part": "AS321KTR-G1",
+            "BOM_Supplier Part": "C144156",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "e7f085e4f71344109c090040716070ab",
+            "uuid": "86ba298425c54f21ae819a207ec551cd"
+          }
+        ],
+        [
+          "LM3224MM-ADJ",
+          1,
+          "MSOP-8_L3.0-W3.0-P0.65-LS5.0-BL",
+          "U3",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "TI(德州仪器)",
+            "BOM_Manufacturer Part": "LM3224MM-ADJ/NOPB",
+            "BOM_Supplier Part": "C11158",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "162f2692f9be41429d2bd489e9d9f94a",
+            "uuid": "dc38fa811ca5d659686717fdb1b2d7cc"
+          }
+        ],
+        [
           "ZD25WD40BTIGT",
           1,
           "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL",
@@ -265,16 +409,16 @@
           }
         ]
       ],
-      "updateTime": 1688722828,
+      "updateTime": 1688802235,
       "createTime": 1688718902,
       "histories": [],
       "created_at": "2023-07-07 03:35:02",
-      "updated_at": "2023-07-07 04:40:28"
+      "updated_at": "2023-07-08 02:43:55"
     }
   ],
   "sort": [],
   "title": "hygrostat-controller",
   "foldername": "hygrostat-controller",
   "schfilename": "hygrostat-controller.json",
-  "schfilemtime": 1688722827028
+  "schfilemtime": 1688802234468
 }
