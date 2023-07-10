@@ -14,5 +14,8 @@ the boot pads shorted. The board should show up as an external drive if this was
 done correctly. Just put the .uf2 file on the drive and it will disconnect after
 it loads.
 
+## Hygrostat controller
+![probe render](https://raw.githubusercontent.com/red2fred2/hygrostat/master/electronics/hygrostat-controller/render.png)
+
 ## Hygrometer probe
 ![probe render](https://raw.githubusercontent.com/red2fred2/hygrostat/master/electronics/hygrometer-probe/render.png)

@@ -4,7 +4,7 @@
   "name": "hygrostat-controller",
   "content": "",
   "created_at": "2023-07-07 03:35:01",
-  "updated_at": "2023-07-08 02:43:55",
+  "updated_at": "2023-07-10 02:43:02",
   "stick": "",
   "documents": [
     {
@@ -26,9 +26,8 @@
         "7c4a625d480a452e96fd015e7a383935": 1,
         "59d0088890f2452ea7072f8d70c2a9ec": 1,
         "c2754a5dac404cb1b757213b56759c67": 1,
-        "b0b97b26ed1e459488c56a21b3af94c6": 4,
+        "b0b97b26ed1e459488c56a21b3af94c6": 5,
         "bbc587d5865e49aeb549df470fadded7": 1,
-        "aa4e41b25d26471e99e0f49bee496574": 1,
         "0613ecefb18d471abd49fce89f778704": 2,
         "86ba298425c54f21ae819a207ec551cd": 1,
         "dc38fa811ca5d659686717fdb1b2d7cc": 1,
@@ -170,9 +169,9 @@
         ],
         [
           "FFH25405-S02S1001K6K",
-          4,
+          5,
           "HDR-TH_2P-P2.54-V-F_FFH25405",
-          "HYG1_I2C,HYG1_POWER,HYG2_I2C,HYG2_POWER",
+          "HYG1_I2C,HYG1_POWER,HYG2_I2C,HYG2_POWER,MIST",
           {
             "BOM_Supplier": "LCSC",
             "BOM_Supplier Part": "C2833813",
@@ -196,21 +195,6 @@
             "BOM_JLCPCB Part Class": "Extended Part",
             "puuid": "a70ab8a52ca04eaba91b5e4c3fb1da5a",
             "uuid": "036dbf200c764746841ad8c945d288cf"
-          }
-        ],
-        [
-          "DB128R-5.0-2P",
-          1,
-          "CONN-TH_DB128R-5.0-2P",
-          "MIST",
-          {
-            "BOM_Supplier": "LCSC",
-            "BOM_Supplier Part": "C424681",
-            "BOM_Manufacturer": "DIBO(地博电气)",
-            "BOM_Manufacturer Part": "DB128R-5.0-2P-GN-S",
-            "BOM_JLCPCB Part Class": "Extended Part",
-            "puuid": "cf770cd8c84c4541b906fea14b3fa589",
-            "uuid": "aa4e41b25d26471e99e0f49bee496574"
           }
         ],
         [
@@ -409,16 +393,53 @@
           }
         ]
       ],
-      "updateTime": 1688802235,
+      "updateTime": 1688963063,
       "createTime": 1688718902,
       "histories": [],
       "created_at": "2023-07-07 03:35:02",
-      "updated_at": "2023-07-08 02:43:55"
+      "updated_at": "2023-07-09 23:24:23"
+    },
+    {
+      "uuid": "38d0cdcaf9bdd2b3cee04a0f5531b4fd",
+      "puuid": "7be84afe6d7f51304535b099288e3a16",
+      "title": "PCB_hygrostat-controller",
+      "filename": "PCB_hygrostat-controller.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "f8151fdc728a41ebbc304e11d39e5437": 4,
+        "10740f144756421793e1ecc7520b3129": 1,
+        "2ee8eb13a0124a108e622ce40c0c25a8": 1,
+        "ce25118ef0b041b8a773e71ca28ae65d": 2,
+        "0821ed6ea50c44f4909e4be7610e4198": 1,
+        "1a7bb6a50d7645d78dc9dd1cfddef81e": 1,
+        "89f5280378144b629de4998ef974b6b8": 1,
+        "5522786b82cf40349dcc37e2c0379997": 5,
+        "a70ab8a52ca04eaba91b5e4c3fb1da5a": 1,
+        "89243c15a2974ba08305eced8ca2c9d4": 1,
+        "bade90667a6e4731855e9a223387b8a6": 2,
+        "398691f1f785460098bbe5ee6590333c": 15,
+        "b60f399a7a7e41848b2be1eb49c79141": 1,
+        "39e1b05b30bd4c64a6c9a1b67d9eb207": 1,
+        "e7f085e4f71344109c090040716070ab": 1,
+        "162f2692f9be41429d2bd489e9d9f94a": 1,
+        "806a55eb4d3c40ab838f70f86785d85e": 1,
+        "9261e24e63524afc994642eab90b7c64": 1,
+        "fde525906f004b04890fe3f9fe02cca8": 1
+      },
+      "BOM": [],
+      "updateTime": 1688974982,
+      "createTime": 1688802455,
+      "histories": [],
+      "created_at": "2023-07-08 02:47:35",
+      "updated_at": "2023-07-10 02:43:02"
     }
   ],
   "sort": [],
   "title": "hygrostat-controller",
   "foldername": "hygrostat-controller",
   "schfilename": "hygrostat-controller.json",
-  "schfilemtime": 1688802234468
+  "schfilemtime": 1688963063492
 }
