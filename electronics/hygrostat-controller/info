@@ -4,7 +4,7 @@
   "name": "hygrostat-controller",
   "content": "",
   "created_at": "2023-07-07 03:35:01",
-  "updated_at": "2023-07-10 02:43:02",
+  "updated_at": "2023-07-10 02:46:13",
   "stick": "",
   "documents": [
     {
@@ -409,6 +409,7 @@
       "master": "",
       "thumb": "/images/thumb-default.png",
       "components": {
+        "806a55eb4d3c40ab838f70f86785d85e": 1,
         "f8151fdc728a41ebbc304e11d39e5437": 4,
         "10740f144756421793e1ecc7520b3129": 1,
         "2ee8eb13a0124a108e622ce40c0c25a8": 1,
@@ -425,16 +426,15 @@
         "39e1b05b30bd4c64a6c9a1b67d9eb207": 1,
         "e7f085e4f71344109c090040716070ab": 1,
         "162f2692f9be41429d2bd489e9d9f94a": 1,
-        "806a55eb4d3c40ab838f70f86785d85e": 1,
         "9261e24e63524afc994642eab90b7c64": 1,
         "fde525906f004b04890fe3f9fe02cca8": 1
       },
       "BOM": [],
-      "updateTime": 1688974982,
+      "updateTime": 1688975173,
       "createTime": 1688802455,
       "histories": [],
       "created_at": "2023-07-08 02:47:35",
-      "updated_at": "2023-07-10 02:43:02"
+      "updated_at": "2023-07-10 02:46:13"
     }
   ],
   "sort": [],
