@@ -45,6 +45,7 @@ unsafe fn USBCTRL_IRQ() {
 
 #[entry]
 fn main() -> ! {
+    // Set up hardware
     let mut pac = pac::Peripherals::take().unwrap();
     let core = pac::CorePeripherals::take().unwrap();
     let mut watchdog = Watchdog::new(pac.WATCHDOG);
@@ -77,10 +78,6 @@ fn main() -> ! {
         USB_MANAGER = Some(UsbManager::new(USB_BUS.as_ref().unwrap()));
         // Enable the USB interrupt
         pac::NVIC::unmask(rp2040_hal::pac::Interrupt::USBCTRL_IRQ);
-
-        LOGGER = Some(SerialLogger::new());
-        log::set_logger_racy(LOGGER.as_ref().unwrap()).unwrap();
-        log::set_max_level_racy(LOG_LEVEL);
     };
 
     let pins = rp2040_hal::gpio::Pins::new(
@@ -92,6 +89,14 @@ fn main() -> ! {
 
     let mut pin1 = pins.gpio0.into_push_pull_output();
 
+    // Set up logging
+    unsafe {
+        LOGGER = Some(SerialLogger::new());
+        log::set_logger_racy(LOGGER.as_ref().unwrap()).unwrap();
+        log::set_max_level_racy(LOG_LEVEL);
+    }
+
+    // Start program logic
     let mut number = 0;
 
     loop {
