@@ -9,10 +9,11 @@ static BOOT_LOADER: [u8; 256] = rp2040_boot2::BOOT_LOADER_GENERIC_03H;
 #[cfg(feature = "rt")]
 extern crate cortex_m_rt;
 
+mod serial_logger;
 mod usb_manager;
 
-use core::fmt::Write;
 use embedded_hal::digital::v2::OutputPin;
+use log::{debug, error, info, trace, warn};
 use panic_reset as _;
 use rp2040_hal::{
     clocks::{init_clocks_and_plls, Clock},
@@ -22,11 +23,14 @@ use rp2040_hal::{
     usb::UsbBus,
     watchdog::Watchdog,
 };
+use serial_logger::SerialLogger;
 use usb_device;
 use usb_device::bus::UsbBusAllocator;
 
 use crate::usb_manager::UsbManager;
 
+static mut LOGGER: Option<SerialLogger> = None;
+static LOG_LEVEL: log::LevelFilter = log::LevelFilter::Trace;
 static mut USB_BUS: Option<UsbBusAllocator<rp2040_hal::usb::UsbBus>> = None;
 static mut USB_MANAGER: Option<UsbManager> = None;
 
@@ -61,7 +65,7 @@ fn main() -> ! {
 
     let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
 
-    let usb = unsafe {
+    unsafe {
         USB_BUS = Some(UsbBusAllocator::new(UsbBus::new(
             pac.USBCTRL_REGS,
             pac.USBCTRL_DPRAM,
@@ -73,7 +77,10 @@ fn main() -> ! {
         USB_MANAGER = Some(UsbManager::new(USB_BUS.as_ref().unwrap()));
         // Enable the USB interrupt
         pac::NVIC::unmask(rp2040_hal::pac::Interrupt::USBCTRL_IRQ);
-        USB_MANAGER.as_mut().unwrap()
+
+        LOGGER = Some(SerialLogger::new());
+        log::set_logger_racy(LOGGER.as_ref().unwrap()).unwrap();
+        log::set_max_level_racy(LOG_LEVEL);
     };
 
     let pins = rp2040_hal::gpio::Pins::new(
@@ -88,12 +95,15 @@ fn main() -> ! {
     let mut number = 0;
 
     loop {
-        usb.write_fmt(format_args!("Hewwo, number {number}!\r"))
-            .unwrap();
-
+        info!("Number: {number}");
         pin1.set_high().unwrap();
         delay.delay_ms(1000);
 
+        error!("Error");
+        warn!("Warning");
+        info!("Info");
+        debug!("Debug");
+        trace!("Trace");
         pin1.set_low().unwrap();
         number += 1;
         delay.delay_ms(1000);
