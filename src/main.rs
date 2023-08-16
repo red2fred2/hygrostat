@@ -18,7 +18,9 @@ use log::{debug, error, info, trace, warn};
 use panic_reset as _;
 use rp2040_hal::{
     clocks::{init_clocks_and_plls, Clock},
-    entry, pac,
+    entry,
+    gpio::{bank0::Gpio0, Output, Pin, PushPull},
+    pac,
     pac::interrupt,
     sio::Sio,
     usb::UsbBus,
@@ -33,7 +35,8 @@ use crate::usb_manager::UsbManager;
 static mut DELAY: Option<Delay> = None;
 static mut LOGGER: Option<SerialLogger> = None;
 static LOG_LEVEL: log::LevelFilter = log::LevelFilter::Trace;
-static mut USB_BUS: Option<UsbBusAllocator<rp2040_hal::usb::UsbBus>> = None;
+static mut PIN1: Option<Pin<Gpio0, Output<PushPull>>> = None;
+static mut USB_BUS: Option<UsbBusAllocator<UsbBus>> = None;
 static mut USB_MANAGER: Option<UsbManager> = None;
 
 #[allow(non_snake_case)]
@@ -92,7 +95,8 @@ fn main() -> ! {
         &mut pac.RESETS,
     );
 
-    let mut pin1 = pins.gpio0.into_push_pull_output();
+    // Pin setup
+    unsafe { PIN1 = Some(pins.gpio0.into_push_pull_output()) };
 
     // Set up logging
     unsafe {
@@ -106,16 +110,22 @@ fn main() -> ! {
 
     loop {
         info!("Number: {number}");
-        pin1.set_high().unwrap();
-        unsafe { DELAY.as_mut().unwrap().delay_ms(1000) };
+
+        unsafe {
+            PIN1.as_mut().unwrap().set_high().unwrap();
+            DELAY.as_mut().unwrap().delay_ms(1000)
+        };
 
         error!("Error");
         warn!("Warning");
         info!("Info");
         debug!("Debug");
         trace!("Trace");
-        pin1.set_low().unwrap();
         number += 1;
-        unsafe { DELAY.as_mut().unwrap().delay_ms(1000) };
+
+        unsafe {
+            PIN1.as_mut().unwrap().set_low().unwrap();
+            DELAY.as_mut().unwrap().delay_ms(1000)
+        };
     }
 }
