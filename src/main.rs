@@ -12,6 +12,7 @@ extern crate cortex_m_rt;
 mod serial_logger;
 mod usb_manager;
 
+use cortex_m::delay::Delay;
 use embedded_hal::digital::v2::OutputPin;
 use log::{debug, error, info, trace, warn};
 use panic_reset as _;
@@ -29,6 +30,7 @@ use usb_device::bus::UsbBusAllocator;
 
 use crate::usb_manager::UsbManager;
 
+static mut DELAY: Option<Delay> = None;
 static mut LOGGER: Option<SerialLogger> = None;
 static LOG_LEVEL: log::LevelFilter = log::LevelFilter::Trace;
 static mut USB_BUS: Option<UsbBusAllocator<rp2040_hal::usb::UsbBus>> = None;
@@ -64,9 +66,12 @@ fn main() -> ! {
     .ok()
     .unwrap();
 
-    let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
-
     unsafe {
+        DELAY = Some(cortex_m::delay::Delay::new(
+            core.SYST,
+            clocks.system_clock.freq().to_Hz(),
+        ));
+
         USB_BUS = Some(UsbBusAllocator::new(UsbBus::new(
             pac.USBCTRL_REGS,
             pac.USBCTRL_DPRAM,
@@ -102,7 +107,7 @@ fn main() -> ! {
     loop {
         info!("Number: {number}");
         pin1.set_high().unwrap();
-        delay.delay_ms(1000);
+        unsafe { DELAY.as_mut().unwrap().delay_ms(1000) };
 
         error!("Error");
         warn!("Warning");
@@ -111,6 +116,6 @@ fn main() -> ! {
         trace!("Trace");
         pin1.set_low().unwrap();
         number += 1;
-        delay.delay_ms(1000);
+        unsafe { DELAY.as_mut().unwrap().delay_ms(1000) };
     }
 }
