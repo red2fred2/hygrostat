@@ -12,7 +12,6 @@ extern crate cortex_m_rt;
 mod usb_manager;
 use core::fmt::Write;
 
-use defmt_rtt as _;
 use embedded_hal::digital::v2::OutputPin;
 use panic_probe as _;
 
