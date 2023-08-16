@@ -10,12 +10,10 @@ static BOOT_LOADER: [u8; 256] = rp2040_boot2::BOOT_LOADER_GENERIC_03H;
 extern crate cortex_m_rt;
 
 mod usb_manager;
+
 use core::fmt::Write;
-
 use embedded_hal::digital::v2::OutputPin;
-use panic_probe as _;
-
-use crate::usb_manager::UsbManager;
+use panic_reset as _;
 use rp2040_hal::{
     clocks::{init_clocks_and_plls, Clock},
     entry, pac,
@@ -26,6 +24,8 @@ use rp2040_hal::{
 };
 use usb_device;
 use usb_device::bus::UsbBusAllocator;
+
+use crate::usb_manager::UsbManager;
 
 static mut USB_BUS: Option<UsbBusAllocator<rp2040_hal::usb::UsbBus>> = None;
 static mut USB_MANAGER: Option<UsbManager> = None;
@@ -60,8 +60,6 @@ fn main() -> ! {
     .unwrap();
 
     let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
-
-    // rp2040_hal::usb::UsbBus::
 
     let usb = unsafe {
         USB_BUS = Some(UsbBusAllocator::new(UsbBus::new(

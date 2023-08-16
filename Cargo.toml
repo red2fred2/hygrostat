@@ -8,7 +8,7 @@ cortex-m = "0.7"
 cortex-m-rt = "0.7"
 embedded-hal = "0.2.5"
 embedded-time = "0.12.0"
-panic-probe = "0.3"
+panic-reset = "0.1.1"
 rp2040-hal = { version = "0.8", features = ["rt", "critical-section-impl"] }
 rp2040-boot2 = "0.2"
 usb-device = "0.2.8"
