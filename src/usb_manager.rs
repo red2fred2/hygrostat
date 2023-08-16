@@ -1,3 +1,4 @@
+//! Handles low level USB stuff
 use rp2040_hal as hal;
 use usb_device;
 use usb_device::{
@@ -6,6 +7,7 @@ use usb_device::{
 };
 use usbd_serial::SerialPort;
 
+/// Deals with low level USB stuff
 pub struct UsbManager {
     device: UsbDevice<'static, hal::usb::UsbBus>,
     serial: SerialPort<'static, hal::usb::UsbBus>,
@@ -26,6 +28,11 @@ impl UsbManager {
         UsbManager { device, serial }
     }
 
+    /// Handles USB reads
+    ///
+    /// Currently, all this does is dump the data in a buffer and walk away.
+    /// Depending on need, this could serve as interactive controls, or just a
+    /// more standard blocking read .
     pub unsafe fn interrupt(&mut self) {
         if self.device.poll(&mut [&mut self.serial]) {
             let mut data: [u8; 256] = [0x00; 256];
@@ -35,6 +42,7 @@ impl UsbManager {
     }
 }
 
+// Fmt implementation for USB writes
 impl core::fmt::Write for UsbManager {
     fn write_str(&mut self, s: &str) -> core::fmt::Result {
         self.serial.write(s.as_bytes()).unwrap();

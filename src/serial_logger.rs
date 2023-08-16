@@ -6,6 +6,10 @@
 use core::fmt::Write;
 use log::{Level, Log};
 
+/// Implements a logger for the log crate
+///
+/// This implementation is only useful with a usb manager class that supports
+/// core::write_str
 pub struct SerialLogger {}
 
 impl SerialLogger {
@@ -13,6 +17,7 @@ impl SerialLogger {
         SerialLogger {}
     }
 
+    /// Writes the color escape code for this log level
     fn write_coloring(&self, level: &Level) -> () {
         let usb = unsafe { crate::USB_MANAGER.as_mut().unwrap() };
 
