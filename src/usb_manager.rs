@@ -15,10 +15,10 @@ impl UsbManager {
     pub fn new(usb_bus: &'static UsbBusAllocator<hal::usb::UsbBus>) -> Self {
         let serial = usbd_serial::SerialPort::new(usb_bus);
 
-        let device = UsbDeviceBuilder::new(usb_bus, UsbVidPid(0x2E8A, 0x000a))
+        let device = UsbDeviceBuilder::new(usb_bus, UsbVidPid(0x0000, 0x000b))
             .manufacturer("Polson")
-            .product("Debug Probe")
-            .serial_number("TEST")
+            .product("Hygrostat")
+            .serial_number("01")
             .device_class(2)
             .device_protocol(1)
             .build();
