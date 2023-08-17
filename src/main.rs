@@ -47,7 +47,8 @@ unsafe fn USBCTRL_IRQ() {
 #[entry]
 fn main() -> ! {
     let crystal_frequency = 12_000_000;
-    let mut hardware = Hardware::init(crystal_frequency);
+    Hardware::init(crystal_frequency);
+    let hardware = Hardware::get().unwrap();
 
     // Set up logging
     unsafe {

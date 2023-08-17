@@ -6,13 +6,15 @@ use usb_device::class_prelude::UsbBusAllocator;
 
 use crate::{usb_manager::UsbManager, PIN1, USB_BUS, USB_MANAGER};
 
+static mut SINGLETON: Option<Hardware> = None;
+
 pub struct Hardware {
     pub delay: Delay,
 }
 
 impl Hardware {
     /// Initialize RP2040 hardware
-    pub fn init(crystal_frequency: u32) -> Hardware {
+    pub fn init(crystal_frequency: u32) {
         let mut pac = pac::Peripherals::take().unwrap();
         let core = pac::CorePeripherals::take().unwrap();
         let mut watchdog = Watchdog::new(pac.WATCHDOG);
@@ -58,6 +60,13 @@ impl Hardware {
         // Pin setup
         unsafe { PIN1 = Some(pins.gpio0.into_push_pull_output()) };
 
-        Hardware { delay }
+        unsafe {
+            SINGLETON = Some(Hardware { delay });
+        }
+    }
+
+    /// Get the hardware singleton
+    pub fn get() -> Option<&'static mut Hardware> {
+        unsafe { SINGLETON.as_mut() }
     }
 }
