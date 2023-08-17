@@ -27,13 +27,8 @@ fn main() -> ! {
 
     SerialLogger::init(log::LevelFilter::Trace);
 
-    // Start program logic
-    let mut number = 0;
-
     loop {
-        info!("Number: {number}");
         hardware.pins.set_high();
-
         hardware.delay.delay_ms(1000);
 
         error!("Error");
@@ -42,9 +37,6 @@ fn main() -> ! {
         debug!("Debug");
         trace!("Trace");
         hardware.pins.set_low();
-
-        number += 1;
-
         hardware.delay.delay_ms(1000);
     }
 }
