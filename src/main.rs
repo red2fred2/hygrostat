@@ -24,8 +24,6 @@ use rp2040_hal::{
 };
 use serial_logger::SerialLogger;
 
-static mut LOGGER: Option<SerialLogger> = None;
-static LOG_LEVEL: log::LevelFilter = log::LevelFilter::Trace;
 static mut PIN1: Option<Pin<Gpio0, Output<PushPull>>> = None;
 
 #[allow(non_snake_case)]
@@ -45,12 +43,7 @@ fn main() -> ! {
     Hardware::init(crystal_frequency);
     let hardware = Hardware::get().unwrap();
 
-    // Set up logging
-    unsafe {
-        LOGGER = Some(SerialLogger::new());
-        log::set_logger_racy(LOGGER.as_ref().unwrap()).unwrap();
-        log::set_max_level_racy(LOG_LEVEL);
-    }
+    SerialLogger::init(log::LevelFilter::Trace);
 
     // Start program logic
     let mut number = 0;

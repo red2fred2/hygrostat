@@ -4,9 +4,11 @@
 //! complicated USB implementations.
 
 use core::fmt::Write;
-use log::{Level, Log};
+use log::{Level, LevelFilter, Log};
 
 use crate::hardware::Hardware;
+
+static mut _LOGGER: Option<SerialLogger> = None;
 
 /// Implements a logger for the log crate
 ///
@@ -15,8 +17,18 @@ use crate::hardware::Hardware;
 pub struct SerialLogger {}
 
 impl SerialLogger {
+    /// Creates a new logger
     pub fn new() -> SerialLogger {
         SerialLogger {}
+    }
+
+    /// Sets up the log interface after a logger is created
+    pub fn init(level: LevelFilter) {
+        unsafe {
+            _LOGGER = Some(SerialLogger::new());
+            log::set_logger_racy(_LOGGER.as_ref().unwrap()).unwrap();
+            log::set_max_level_racy(level);
+        }
     }
 
     /// Writes the color escape code for this log level
