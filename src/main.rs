@@ -27,21 +27,20 @@ use serial_logger::SerialLogger;
 use usb_device;
 use usb_device::bus::UsbBusAllocator;
 
-use crate::usb_manager::UsbManager;
-
 static mut LOGGER: Option<SerialLogger> = None;
 static LOG_LEVEL: log::LevelFilter = log::LevelFilter::Trace;
 static mut PIN1: Option<Pin<Gpio0, Output<PushPull>>> = None;
 static mut USB_BUS: Option<UsbBusAllocator<UsbBus>> = None;
-static mut USB_MANAGER: Option<UsbManager> = None;
 
 #[allow(non_snake_case)]
 #[interrupt]
 unsafe fn USBCTRL_IRQ() {
-    match USB_MANAGER.as_mut() {
-        Some(manager) => manager.interrupt(),
+    let hardware = Hardware::get();
+
+    match hardware {
+        Some(hw) => hw.usb.interrupt(),
         None => (),
-    };
+    }
 }
 
 #[entry]

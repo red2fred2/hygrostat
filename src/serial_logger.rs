@@ -6,6 +6,8 @@
 use core::fmt::Write;
 use log::{Level, Log};
 
+use crate::hardware::Hardware;
+
 /// Implements a logger for the log crate
 ///
 /// This implementation is only useful with a usb manager class that supports
@@ -19,16 +21,18 @@ impl SerialLogger {
 
     /// Writes the color escape code for this log level
     fn write_coloring(&self, level: &Level) -> () {
-        let usb = unsafe { crate::USB_MANAGER.as_mut().unwrap() };
+        let hardware = Hardware::get().unwrap();
 
-        usb.write_str(match level {
-            Level::Error => "\x1b[31;1m",
-            Level::Warn => "\x1b[33;1m",
-            Level::Info => "\x1b[37m",
-            Level::Debug => "\x1b[35m",
-            Level::Trace => "\x1b[36m",
-        })
-        .unwrap()
+        hardware
+            .usb
+            .write_str(match level {
+                Level::Error => "\x1b[31;1m",
+                Level::Warn => "\x1b[33;1m",
+                Level::Info => "\x1b[37m",
+                Level::Debug => "\x1b[35m",
+                Level::Trace => "\x1b[36m",
+            })
+            .unwrap()
     }
 }
 
@@ -38,17 +42,18 @@ impl Log for SerialLogger {
     }
 
     fn log(&self, record: &log::Record) {
-        let usb = unsafe { crate::USB_MANAGER.as_mut().unwrap() };
+        let hardware = Hardware::get().unwrap();
+
         let level = record.level();
 
         self.write_coloring(&level);
 
         // Message
         let args = record.args().clone();
-        usb.write_fmt(args).unwrap();
+        hardware.usb.write_fmt(args).unwrap();
 
         // Affix
-        usb.write_str("\x1b[0m\r\n").unwrap();
+        hardware.usb.write_str("\x1b[0m\r\n").unwrap();
     }
 
     fn flush(&self) {}
