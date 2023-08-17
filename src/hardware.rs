@@ -11,15 +11,15 @@ pub struct Hardware {
 }
 
 impl Hardware {
-    pub fn init() -> Hardware {
+    /// Initialize RP2040 hardware
+    pub fn init(crystal_frequency: u32) -> Hardware {
         let mut pac = pac::Peripherals::take().unwrap();
         let core = pac::CorePeripherals::take().unwrap();
         let mut watchdog = Watchdog::new(pac.WATCHDOG);
         let sio = Sio::new(pac.SIO);
 
-        let external_xtal_freq_hz = 12_000_000u32;
         let clocks = init_clocks_and_plls(
-            external_xtal_freq_hz,
+            crystal_frequency,
             pac.XOSC,
             pac.CLOCKS,
             pac.PLL_SYS,

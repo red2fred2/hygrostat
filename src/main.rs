@@ -46,7 +46,8 @@ unsafe fn USBCTRL_IRQ() {
 
 #[entry]
 fn main() -> ! {
-    let mut hardware = Hardware::init();
+    let crystal_frequency = 12_000_000;
+    let mut hardware = Hardware::init(crystal_frequency);
 
     // Set up logging
     unsafe {
@@ -59,7 +60,7 @@ fn main() -> ! {
     let mut number = 0;
 
     loop {
-        info!("Hewwo: {number}");
+        info!("Number: {number}");
 
         unsafe {
             PIN1.as_mut().unwrap().set_high().unwrap();
