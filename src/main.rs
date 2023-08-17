@@ -21,16 +21,12 @@ use rp2040_hal::{
     entry,
     gpio::{bank0::Gpio0, Output, Pin, PushPull},
     pac::interrupt,
-    usb::UsbBus,
 };
 use serial_logger::SerialLogger;
-use usb_device;
-use usb_device::bus::UsbBusAllocator;
 
 static mut LOGGER: Option<SerialLogger> = None;
 static LOG_LEVEL: log::LevelFilter = log::LevelFilter::Trace;
 static mut PIN1: Option<Pin<Gpio0, Output<PushPull>>> = None;
-static mut USB_BUS: Option<UsbBusAllocator<UsbBus>> = None;
 
 #[allow(non_snake_case)]
 #[interrupt]
@@ -38,7 +34,7 @@ unsafe fn USBCTRL_IRQ() {
     let hardware = Hardware::get();
 
     match hardware {
-        Some(hw) => hw.usb.interrupt(),
+        Some(hw) => hw.usb.as_mut().unwrap().interrupt(),
         None => (),
     }
 }

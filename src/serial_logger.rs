@@ -25,6 +25,8 @@ impl SerialLogger {
 
         hardware
             .usb
+            .as_mut()
+            .unwrap()
             .write_str(match level {
                 Level::Error => "\x1b[31;1m",
                 Level::Warn => "\x1b[33;1m",
@@ -50,10 +52,15 @@ impl Log for SerialLogger {
 
         // Message
         let args = record.args().clone();
-        hardware.usb.write_fmt(args).unwrap();
+        hardware.usb.as_mut().unwrap().write_fmt(args).unwrap();
 
         // Affix
-        hardware.usb.write_str("\x1b[0m\r\n").unwrap();
+        hardware
+            .usb
+            .as_mut()
+            .unwrap()
+            .write_str("\x1b[0m\r\n")
+            .unwrap();
     }
 
     fn flush(&self) {}

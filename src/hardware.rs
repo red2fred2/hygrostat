@@ -4,13 +4,14 @@ use cortex_m::delay::Delay;
 use rp2040_hal::{clocks::init_clocks_and_plls, pac, usb::UsbBus, Clock, Sio, Watchdog};
 use usb_device::class_prelude::UsbBusAllocator;
 
-use crate::{usb_manager::UsbManager, PIN1, USB_BUS};
+use crate::{usb_manager::UsbManager, PIN1};
 
 static mut SINGLETON: Option<Hardware> = None;
 
 pub struct Hardware {
     pub delay: Delay,
-    pub usb: UsbManager,
+    pub usb: Option<UsbManager>,
+    usb_bus: UsbBusAllocator<UsbBus>,
 }
 
 impl Hardware {
@@ -35,19 +36,19 @@ impl Hardware {
 
         let delay;
         let usb;
+        let usb_bus;
 
         unsafe {
             delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
 
-            USB_BUS = Some(UsbBusAllocator::new(UsbBus::new(
+            usb_bus = UsbBusAllocator::new(UsbBus::new(
                 pac.USBCTRL_REGS,
                 pac.USBCTRL_DPRAM,
                 clocks.usb_clock,
                 true,
                 &mut pac.RESETS,
-            )));
+            ));
 
-            usb = UsbManager::new(USB_BUS.as_ref().unwrap());
             // Enable the USB interrupt
             pac::NVIC::unmask(rp2040_hal::pac::Interrupt::USBCTRL_IRQ);
         };
@@ -63,7 +64,15 @@ impl Hardware {
         unsafe { PIN1 = Some(pins.gpio0.into_push_pull_output()) };
 
         unsafe {
-            SINGLETON = Some(Hardware { delay, usb });
+            SINGLETON = Some(Hardware {
+                delay,
+                usb: None,
+                usb_bus,
+            });
+
+            usb = UsbManager::new(&SINGLETON.as_ref().unwrap().usb_bus);
+
+            SINGLETON.as_mut().unwrap().usb = Some(usb);
         }
     }
 
