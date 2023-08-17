@@ -4,12 +4,13 @@ use cortex_m::delay::Delay;
 use rp2040_hal::{clocks::init_clocks_and_plls, pac, usb::UsbBus, Clock, Sio, Watchdog};
 use usb_device::class_prelude::UsbBusAllocator;
 
-use crate::{usb_manager::UsbManager, PIN1};
+use crate::{pin_test::PinTest, usb_manager::UsbManager};
 
 static mut SINGLETON: Option<Hardware> = None;
 
 pub struct Hardware {
     pub delay: Delay,
+    pub pins: PinTest,
     pub usb: Option<UsbManager>,
     usb_bus: UsbBusAllocator<UsbBus>,
 }
@@ -60,12 +61,12 @@ impl Hardware {
             &mut pac.RESETS,
         );
 
-        // Pin setup
-        unsafe { PIN1 = Some(pins.gpio0.into_push_pull_output()) };
+        let pins = PinTest::new(pins);
 
         unsafe {
             SINGLETON = Some(Hardware {
                 delay,
+                pins,
                 usb: None,
                 usb_bus,
             });
