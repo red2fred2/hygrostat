@@ -1,11 +1,14 @@
 //! Handles low level USB stuff
 use rp2040_hal as hal;
+use rp2040_hal::pac::interrupt;
 use usb_device;
 use usb_device::{
     bus::UsbBusAllocator,
     device::{UsbDevice, UsbDeviceBuilder, UsbVidPid},
 };
 use usbd_serial::SerialPort;
+
+use crate::hardware::Hardware;
 
 /// Deals with low level USB stuff
 pub struct UsbManager {
@@ -48,5 +51,16 @@ impl core::fmt::Write for UsbManager {
         self.serial.write(s.as_bytes()).unwrap();
 
         Ok(())
+    }
+}
+
+#[allow(non_snake_case)]
+#[interrupt]
+unsafe fn USBCTRL_IRQ() {
+    let hardware = Hardware::get();
+
+    match hardware {
+        Some(hw) => hw.usb.as_mut().unwrap().interrupt(),
+        None => (),
     }
 }

@@ -1,6 +1,5 @@
 #![no_std]
 #![no_main]
-
 #[link_section = ".boot2"]
 #[no_mangle]
 #[used]
@@ -20,22 +19,10 @@ use panic_reset as _;
 use rp2040_hal::{
     entry,
     gpio::{bank0::Gpio0, Output, Pin, PushPull},
-    pac::interrupt,
 };
 use serial_logger::SerialLogger;
 
 static mut PIN1: Option<Pin<Gpio0, Output<PushPull>>> = None;
-
-#[allow(non_snake_case)]
-#[interrupt]
-unsafe fn USBCTRL_IRQ() {
-    let hardware = Hardware::get();
-
-    match hardware {
-        Some(hw) => hw.usb.as_mut().unwrap().interrupt(),
-        None => (),
-    }
-}
 
 #[entry]
 fn main() -> ! {
