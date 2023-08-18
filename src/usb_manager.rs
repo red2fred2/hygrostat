@@ -48,7 +48,13 @@ impl UsbManager {
 // Fmt implementation for USB writes
 impl core::fmt::Write for UsbManager {
     fn write_str(&mut self, s: &str) -> core::fmt::Result {
-        self.serial.write(s.as_bytes()).unwrap();
+        let result = self.serial.write(s.as_bytes());
+
+        // Ignore the result, because if it's handled, it'll just create more
+        // data recursively.
+        match result {
+            _ => (),
+        }
 
         Ok(())
     }
@@ -57,10 +63,10 @@ impl core::fmt::Write for UsbManager {
 #[allow(non_snake_case)]
 #[interrupt]
 unsafe fn USBCTRL_IRQ() {
-    let hardware = Hardware::get();
+    // If usb isn't enabled by the time an interrupt is attempted, just ignore
+    // it and hope nothing bad happens.
+    let Some(hardware) = Hardware::get() else {return};
+    let Some(usb) = hardware.usb.as_mut() else {return};
 
-    match hardware {
-        Some(hw) => hw.usb.as_mut().unwrap().interrupt(),
-        None => (),
-    }
+    usb.interrupt()
 }
