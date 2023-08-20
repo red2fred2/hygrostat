@@ -32,7 +32,7 @@ pub mod serial_logger;
 pub mod usb_manager;
 
 use hardware::Hardware;
-use log::{debug, error, info, trace, warn};
+use log::info;
 use panic_reset as _;
 use rp2040_hal::entry;
 use serial_logger::SerialLogger;
@@ -43,18 +43,17 @@ fn main() -> ! {
     Hardware::init(crystal_frequency);
     let hardware = Hardware::get().unwrap();
 
-    SerialLogger::init(log::LevelFilter::Trace);
+    SerialLogger::init(log::LevelFilter::Info);
+
+    let mut number: u32 = 0;
 
     loop {
-        hardware.pins.set_high();
-        hardware.delay.delay_ms(1000);
+        // hardware.pins.set_high();
+        // hardware.delay.delay_ms(1000);
 
-        error!("Error");
-        warn!("Warning");
-        info!("Info");
-        debug!("Debug");
-        trace!("Trace");
-        hardware.pins.set_low();
+        info!("Going for {number} seconds");
+        number += 1;
+        // hardware.pins.set_low();
         hardware.delay.delay_ms(1000);
     }
 }
