@@ -49,7 +49,7 @@ impl SerialLogger {
     fn write_affix() {
         // Skip this if hardware isn't set up yet
         let Some(hardware) = Hardware::get() else {return};
-        let Some(usb) = hardware.usb.as_mut() else {return};
+        let usb = hardware.get_usb();
 
         let result = usb.write_str("\x1b[0m\r\n");
 
@@ -62,7 +62,7 @@ impl SerialLogger {
     fn write_coloring(level: &Level) -> () {
         // Skip this if hardware isn't set up yet
         let Some(hardware) = Hardware::get() else {return};
-        let Some(usb) = hardware.usb.as_mut() else {return};
+        let usb = hardware.get_usb();
 
         let color_string = match level {
             Level::Error => "\x1b[31;1m",
@@ -83,7 +83,7 @@ impl SerialLogger {
     fn write_message(message: &Arguments) {
         // Skip this if hardware isn't set up yet
         let Some(hardware) = Hardware::get() else {return};
-        let Some(usb) = hardware.usb.as_mut() else {return};
+        let usb = hardware.get_usb();
 
         let args = message.clone();
         let result = usb.write_fmt(args);

@@ -66,7 +66,6 @@ unsafe fn USBCTRL_IRQ() {
     // If usb isn't enabled by the time an interrupt is attempted, just ignore
     // it and hope nothing bad happens.
     let Some(hardware) = Hardware::get() else {return};
-    let Some(usb) = hardware.usb.as_mut() else {return};
 
-    usb.interrupt()
+    hardware.get_usb().interrupt()
 }

@@ -11,7 +11,7 @@ static mut SINGLETON: Option<Hardware> = None;
 pub struct Hardware {
     delay: Delay,
     pins: PinTest,
-    pub usb: Option<UsbManager>,
+    usb: Option<UsbManager>,
     usb_bus: UsbBusAllocator<UsbBus>,
 }
 
@@ -90,5 +90,10 @@ impl Hardware {
 
     pub fn get_pins(&mut self) -> &mut PinTest {
         &mut self.pins
+    }
+
+    pub fn get_usb(&mut self) -> &mut UsbManager {
+        // It should be impossible for this to be None, panic if it is
+        self.usb.as_mut().unwrap()
     }
 }
