@@ -1,3 +1,21 @@
+//! This controls a hygrostat for a cheese cave.
+//!
+//! The complete set of files can be found on the [Github] repo.
+//!
+//!	To load new code to the device:
+//!
+//! 0. [Install] Rust.
+//! 1. Run ```cargo run --release``` to generate a .uf2 file for flashing. This
+//! can be found in the ```target > thumbv6m-none-eabi > release``` folder.
+//! 2. Short the test pads on the board on the edge opposite the big capacitor.
+//! 3. Plug the board into your computer with a USB cord.
+//! 4. Stop shorting the test pads.
+//! 5. The board should show up as a flash drive. Drag and drop the .uf2 file in.
+//! 6. It will disconnect from the computer and reboot with the new code.
+//!
+//! [Install]: https://www.rust-lang.org/tools/install
+//! [Github]: https://github.com/red2fred2/hygrostat/
+
 #![no_std]
 #![no_main]
 #[link_section = ".boot2"]
