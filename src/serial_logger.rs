@@ -31,13 +31,15 @@ impl SerialLogger {
             LOGGER = Some(SerialLogger::new());
             let logger = LOGGER.as_ref().unwrap();
 
-            let result = log::set_logger_racy(logger);
-            log::set_max_level_racy(level);
+            critical_section::with(|_| {
+                let result = log::set_logger_racy(logger);
+                log::set_max_level_racy(level);
 
-            // Disable logging if it fails to set up
-            if result.is_err() {
-                FAILED_INIT = true;
-            }
+                // Disable logging if it fails to set up
+                if result.is_err() {
+                    FAILED_INIT = true;
+                }
+            });
         }
     }
 
