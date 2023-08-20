@@ -26,10 +26,10 @@ static BOOT_LOADER: [u8; 256] = rp2040_boot2::BOOT_LOADER_GENERIC_03H;
 #[cfg(feature = "rt")]
 extern crate cortex_m_rt;
 
-mod hardware;
-mod pin_test;
-mod serial_logger;
-mod usb_manager;
+pub mod hardware;
+pub mod pin_test;
+pub mod serial_logger;
+pub mod usb_manager;
 
 use hardware::Hardware;
 use log::{debug, error, info, trace, warn};
