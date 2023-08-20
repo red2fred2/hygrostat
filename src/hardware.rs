@@ -80,7 +80,7 @@ impl Hardware {
     }
 
     /// Get the hardware singleton
-    pub fn get() -> Option<&'static mut Hardware> {
+    pub fn get() -> Option<&'static mut Self> {
         unsafe { SINGLETON.as_mut() }
     }
 
