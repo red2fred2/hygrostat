@@ -10,7 +10,7 @@ static mut SINGLETON: Option<Hardware> = None;
 
 pub struct Hardware {
     delay: Delay,
-    pub pins: PinTest,
+    pins: PinTest,
     pub usb: Option<UsbManager>,
     usb_bus: UsbBusAllocator<UsbBus>,
 }
@@ -86,5 +86,9 @@ impl Hardware {
 
     pub fn get_delay(&mut self) -> &mut Delay {
         &mut self.delay
+    }
+
+    pub fn get_pins(&mut self) -> &mut PinTest {
+        &mut self.pins
     }
 }
