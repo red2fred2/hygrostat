@@ -9,7 +9,7 @@ use crate::{pin_test::PinTest, usb_manager::UsbManager};
 static mut SINGLETON: Option<Hardware> = None;
 
 pub struct Hardware {
-    pub delay: Delay,
+    delay: Delay,
     pub pins: PinTest,
     pub usb: Option<UsbManager>,
     usb_bus: UsbBusAllocator<UsbBus>,
@@ -82,5 +82,9 @@ impl Hardware {
     /// Get the hardware singleton
     pub fn get() -> Option<&'static mut Hardware> {
         unsafe { SINGLETON.as_mut() }
+    }
+
+    pub fn get_delay(&mut self) -> &mut Delay {
+        &mut self.delay
     }
 }

@@ -49,11 +49,11 @@ fn main() -> ! {
 
     loop {
         // hardware.pins.set_high();
-        // hardware.delay.delay_ms(1000);
+        // hardware.get_delay().delay_ms(1000);
 
         info!("Going for {number} seconds");
         number += 1;
         // hardware.pins.set_low();
-        hardware.delay.delay_ms(1000);
+        hardware.get_delay().delay_ms(1000);
     }
 }
