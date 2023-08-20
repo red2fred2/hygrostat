@@ -18,63 +18,65 @@ pub struct Hardware {
 impl Hardware {
     /// Initialize RP2040 hardware
     pub fn init(crystal_frequency: u32) {
-        let mut pac = pac::Peripherals::take().unwrap();
-        let core = pac::CorePeripherals::take().unwrap();
-        let mut watchdog = Watchdog::new(pac.WATCHDOG);
-        let sio = Sio::new(pac.SIO);
+        critical_section::with(|_| {
+            let mut pac = pac::Peripherals::take().unwrap();
+            let core = pac::CorePeripherals::take().unwrap();
+            let mut watchdog = Watchdog::new(pac.WATCHDOG);
+            let sio = Sio::new(pac.SIO);
 
-        let clocks = init_clocks_and_plls(
-            crystal_frequency,
-            pac.XOSC,
-            pac.CLOCKS,
-            pac.PLL_SYS,
-            pac.PLL_USB,
-            &mut pac.RESETS,
-            &mut watchdog,
-        )
-        .ok()
-        .unwrap();
-
-        let delay;
-        let usb;
-        let usb_bus;
-
-        unsafe {
-            delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
-
-            usb_bus = UsbBusAllocator::new(UsbBus::new(
-                pac.USBCTRL_REGS,
-                pac.USBCTRL_DPRAM,
-                clocks.usb_clock,
-                true,
+            let clocks = init_clocks_and_plls(
+                crystal_frequency,
+                pac.XOSC,
+                pac.CLOCKS,
+                pac.PLL_SYS,
+                pac.PLL_USB,
                 &mut pac.RESETS,
-            ));
+                &mut watchdog,
+            )
+            .ok()
+            .unwrap();
 
-            // Enable the USB interrupt
-            pac::NVIC::unmask(rp2040_hal::pac::Interrupt::USBCTRL_IRQ);
-        };
+            let delay;
+            let usb;
+            let usb_bus;
 
-        let pins = rp2040_hal::gpio::Pins::new(
-            pac.IO_BANK0,
-            pac.PADS_BANK0,
-            sio.gpio_bank0,
-            &mut pac.RESETS,
-        );
+            unsafe {
+                delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
 
-        let pins = PinTest::new(pins);
+                usb_bus = UsbBusAllocator::new(UsbBus::new(
+                    pac.USBCTRL_REGS,
+                    pac.USBCTRL_DPRAM,
+                    clocks.usb_clock,
+                    true,
+                    &mut pac.RESETS,
+                ));
 
-        unsafe {
-            SINGLETON = Some(Hardware {
-                delay,
-                pins,
-                usb: None,
-                usb_bus,
-            });
+                // Enable the USB interrupt
+                pac::NVIC::unmask(rp2040_hal::pac::Interrupt::USBCTRL_IRQ);
+            };
 
-            usb = UsbManager::new(&SINGLETON.as_ref().unwrap().usb_bus);
+            let pins = rp2040_hal::gpio::Pins::new(
+                pac.IO_BANK0,
+                pac.PADS_BANK0,
+                sio.gpio_bank0,
+                &mut pac.RESETS,
+            );
 
-            SINGLETON.as_mut().unwrap().usb = Some(usb);
-        }
+            let pins = PinTest::new(pins);
+
+            unsafe {
+                SINGLETON = Some(Hardware {
+                    delay,
+                    pins,
+                    usb: None,
+                    usb_bus,
+                });
+
+                usb = UsbManager::new(&SINGLETON.as_ref().unwrap().usb_bus);
+
+                SINGLETON.as_mut().unwrap().usb = Some(usb);
+            }
+        })
     }
 
     /// Get the hardware singleton
